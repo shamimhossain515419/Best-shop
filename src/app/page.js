@@ -2,7 +2,8 @@
 
 
 import { GlobalContext } from "@/contaxt";
-import { getAllAdminProducts } from "@/services/product";
+import { getAllUserProducts } from "@/services/product";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -14,7 +15,7 @@ export default function Home() {
   const router = useRouter();
 
   async function getListOfProducts() {
-    const res = await getAllAdminProducts();
+    const res = await getAllUserProducts();
     console.log(res);
     if (res.success) {
       setProducts(res.data);

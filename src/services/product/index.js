@@ -21,7 +21,19 @@ export const addNewProduct = async (formData) => {
 
 export const getAllAdminProducts = async () => {
      try {
-          const res = await fetch("http://localhost:3000/api/admin/all-products", {
+          const res = await fetch("https://best-shop-88xn891b6-shamimusman515419.vercel.app/api/admin/all-products", {
+               method: "GET",
+               cache: "no-store"
+          });
+          const data = await res.json();
+          return data;
+     } catch (error) {
+          console.log(error);
+     }
+};
+export const getAllUserProducts = async () => {
+     try {
+          const res = await fetch("/api/admin/all-products", {
                method: "GET",
                cache: "no-store"
           });
@@ -75,7 +87,7 @@ export const productByCategory = async (id) => {
      try {
 
           const res = await fetch(
-               `http://localhost:3000/api/admin/product-by-category?id=${id}`,
+               `https://best-shop-88xn891b6-shamimusman515419.vercel.app/api/admin/product-by-category?id=${id}`,
                {
                     method: "GET",
                     cache: "no-store",
@@ -95,7 +107,7 @@ export const productByCategory = async (id) => {
 export const productById = async (id) => {
      try {
           const res = await fetch(
-               `http://localhost:3000/api/admin/product-by-id?id=${id}`,
+               `https://best-shop-88xn891b6-shamimusman515419.vercel.app/api/admin/product-by-id?id=${id}`,
                {
                     method: "GET",
                     cache: "no-store",
