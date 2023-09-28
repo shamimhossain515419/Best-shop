@@ -23,10 +23,10 @@ export default function CommonCart({
               <div className="flow-root">
                 {cartItems && cartItems.length ? (
                   <ul className="-my-8">
-                    {cartItems.map((cartItem) => (
+                    {cartItems.map((cartItem, index) => (
                       <li
                         className="flex-col flex space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
-                        key={cartItem.id}
+                        key={index}
                       >
                         <div className="shrink-0">
                           <Image width={250} height={250}
@@ -63,8 +63,8 @@ export default function CommonCart({
                                 }
                               >
                                 {componentLevelLoader &&
-                                componentLevelLoader.loading &&
-                                componentLevelLoader.id === cartItem._id ? (
+                                  componentLevelLoader.loading &&
+                                  componentLevelLoader.id === cartItem._id ? (
                                   <ComponentLevelLoader
                                     text={"Removing"}
                                     color={"#0000000"}
@@ -94,9 +94,9 @@ export default function CommonCart({
                     $
                     {cartItems && cartItems.length
                       ? cartItems.reduce(
-                          (total, item) => item.productID.price + total,
-                          0
-                        )
+                        (total, item) => item.productID.price + total,
+                        0
+                      )
                       : "0"}
                   </p>
                 </div>
@@ -110,15 +110,15 @@ export default function CommonCart({
                     $
                     {cartItems && cartItems.length
                       ? cartItems.reduce(
-                          (total, item) => item.productID.price + total,
-                          0
-                        )
+                        (total, item) => item.productID.price + total,
+                        0
+                      )
                       : "0"}
                   </p>
                 </div>
                 <div className="mt-5 text-center">
                   <button
-                  onClick={()=>router.push('/checkout')}
+                    onClick={() => router.push('/checkout')}
                     disabled={cartItems && cartItems.length === 0}
                     className="disabled:opacity-50 group inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                   >

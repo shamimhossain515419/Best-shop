@@ -24,6 +24,8 @@ const CartModal = () => {
 
                const updatedData = res.data && res.data.length
                     ? res.data.map((item) => ({
+
+
                          ...item, productID: {
                               ...item.productID,
                               price:
@@ -78,8 +80,8 @@ const CartModal = () => {
                     mainContent={
                          cartItems && cartItems.length ? (
                               <ul role="list" className="-my-6 divide-y divide-gray-300">
-                                   {cartItems.map((cartItem) => (
-                                        <li key={cartItem.id} className="flex py-6">
+                                   {cartItems.map((cartItem, index) => (
+                                        <li key={index} className="flex py-6">
                                              <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                                   <Image
                                                        width={200}
