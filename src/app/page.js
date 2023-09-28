@@ -15,7 +15,7 @@ export default function Home() {
 
   async function getListOfProducts() {
     const res = await getAllAdminProducts();
-
+    console.log(res);
     if (res.success) {
       setProducts(res.data);
     }
