@@ -3,6 +3,7 @@
 
 import ComponentLevelLoader from "@/Component/Loader/componentlevel";
 import { GlobalContext } from "@/contaxt";
+import { addToCart } from "@/services/cart";
 import { deleteAProduct } from "@/services/product";
 
 // import { addToCart } from "@/services/cart";
@@ -10,7 +11,7 @@ import { deleteAProduct } from "@/services/product";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { toast } from "react-toastify";
-// import { toast } from "react-toastify";
+
 
 export default function ProductButton({ item }) {
   const pathName = usePathname();
@@ -18,7 +19,8 @@ export default function ProductButton({ item }) {
     setCurrentUpdatedProduct,
     setComponentLevelLoader,
     componentLevelLoader,
-    currentUpdatedProduct,
+    currentUpdatedProduct,user,showCartModal,
+    setShowCartModal,
     
   } = useContext(GlobalContext);
   const router = useRouter();
@@ -44,27 +46,27 @@ export default function ProductButton({ item }) {
     }
   }
 
-//   async function handleAddToCart(getItem) {
-//     setComponentLevelLoader({ loading: true, id: getItem._id });
+  async function handleAddToCart(getItem) {
+    setComponentLevelLoader({ loading: true, id: getItem._id });
 
-//     const res = await addToCart({ productID: getItem._id, userID: user._id });
+    const res = await addToCart({ productID: getItem._id, userID: user._id });
 
-//     if (res.success) {
-//       toast.success(res.message, {
-//         position: toast.POSITION.TOP_RIGHT,
-//       });
-//       setComponentLevelLoader({ loading: false, id: "" });
-//       setShowCartModal(true);
-//     } else {
-//       toast.error(res.message, {
-//         position: toast.POSITION.TOP_RIGHT,
-//       });
-//       setComponentLevelLoader({ loading: false, id: "" });
-//       setShowCartModal(true)
-//     }
+    if (res.success) {
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true)
+    }
 
-//     console.log(res);
-//   }
+    console.log(res);
+  }
 
   return isAdminView ? (
     <>

@@ -6,6 +6,14 @@ module.exports = {
                {
                     protocol: "https",
                     hostname: "firebasestorage.googleapis.com",
+               },
+               {
+                    protocol: "https",
+                    hostname: "img.freepik.com",
+               },
+               {
+                    protocol: "https",
+                    hostname: "images.unsplash.com",
                }
                
           ],

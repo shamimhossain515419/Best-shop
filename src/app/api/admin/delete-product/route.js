@@ -1,4 +1,5 @@
 import connectToDB from "@/database";
+import AuthUser from "@/middleware/AuthUser";
 import Product from "@/models/product";
 import { NextResponse } from "next/server";
 
@@ -6,6 +7,10 @@ import { NextResponse } from "next/server";
 export const dynamic = "farce-dynamic";
 
 export async function DELETE(req) {
+
+
+     const isUser=AuthUser(req);
+    
 
      try {
           await connectToDB();

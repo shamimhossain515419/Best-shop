@@ -1,17 +1,16 @@
 "use client";
 
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
-
-// import { addToCart } from "@/services/cart";
 
 import { GlobalContext } from "@/contaxt";
 import ComponentLevelLoader from "@/Component/Loader/componentlevel";
 import Notification from "@/Component/Notification";
 import Image from "next/image";
+import { addToCart } from "@/services/cart";
 
-export default function CommonDetails({item}) {
+export default function CommonDetails({ item }) {
   const {
     setComponentLevelLoader,
     componentLevelLoader,
@@ -19,26 +18,32 @@ export default function CommonDetails({item}) {
     setShowCartModal,
   } = useContext(GlobalContext);
 
+
+
+
   async function handleAddToCart(getItem) {
-    // setComponentLevelLoader({ loading: true, id: "" });
+    setComponentLevelLoader({ loading: true, id: "" });
 
-    // const res = await addToCart({ productID: getItem._id, userID: user._id });
+    const res = await addToCart({ productID: getItem._id, userID: user._id });
 
-    // if (res.success) {
-    //   toast.success(res.message, {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //   });
-    //   setComponentLevelLoader({ loading: false, id: "" });
-    //   setShowCartModal(true);
-    // } else {
-    //   toast.error(res.message, {
-    //     position: toast.POSITION.TOP_RIGHT,
-    //   });
-    //   setComponentLevelLoader({ loading: false, id: "" });
-    //   setShowCartModal(true);
-    // }
+    if (res.success) {
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true)
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(false)
+
+    }
   }
 
+
+ 
   return (
     <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto px-4">
@@ -48,7 +53,7 @@ export default function CommonDetails({item}) {
               <div className="lg:order-2 lg:ml-5">
                 <div className="max-w-xl overflow-hidden rounded-lg">
                   <Image width={400}
-                       height={400}
+                    height={400}
                     src={item.imageUrl}
                     className="h-full w-full max-w-full object-cover"
                     alt="Product Details"
@@ -62,8 +67,8 @@ export default function CommonDetails({item}) {
                     className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-100 text-center"
                   >
                     <Image
-                       width={400}
-                       height={400}
+                      width={400}
+                      height={400}
                       src={item.imageUrl}
                       className="h-full w-full object-cover"
                       alt="Product Details"
@@ -74,8 +79,8 @@ export default function CommonDetails({item}) {
                     className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-100 text-center"
                   >
                     <Image
-                       width={400}
-                       height={400}
+                      width={400}
+                      height={400}
                       src={item.imageUrl}
                       className="h-full w-full object-cover"
                       alt="Product Details"
@@ -92,9 +97,8 @@ export default function CommonDetails({item}) {
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 botder-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
                 <h1
-                  className={`text-3xl font-bold mr-2 ${
-                    item.onSale === "yes" ? "line-through" : ""
-                  }`}
+                  className={`text-3xl font-bold mr-2 ${item.onSale === "yes" ? "line-through" : ""
+                    }`}
                 >
                   ${item && item.price}
                 </h1>
@@ -149,7 +153,7 @@ export default function CommonDetails({item}) {
           </div>
         </div>
       </div>
-      <Notification/>
+      <Notification />
     </section>
   );
 }

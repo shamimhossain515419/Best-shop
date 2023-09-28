@@ -39,7 +39,7 @@ export default function ProductTile({ item }) {
             <p className="mr-3 text-sm font-semibold">{`-(${item.priceDrop}%)off`}</p>
           ) : null}
         </div>
-        <h3 className="md-2 text-gray-400 text-sm">{item.name}</h3>
+        <h3 className="md-2 text-gray-400 text-sm">{item.name.slice(0,60)}</h3>
       </div>
     </div>
   );

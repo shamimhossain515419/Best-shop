@@ -7,6 +7,7 @@ import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
 import { GlobalContext } from "@/contaxt";
+import CartModal from "../CartModal";
 
 
 function NavItems({ isModalView = false, isAdminView, router }) {
@@ -54,6 +55,7 @@ export default function Navbar() {
     setUser,
     showCartModal,
     setShowCartModal,
+
     setCurrentUpdatedProduct,
     currentUpdatedProduct
   } = useContext(GlobalContext);
@@ -104,7 +106,7 @@ export default function Navbar() {
                 >
                   Account
                 </button>
-                <button
+                <button onClick={() => router.push('/cart')}
                   className={
                     "mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium upprcase tracking-wide text-white"
                   }
@@ -191,7 +193,7 @@ export default function Navbar() {
         show={showNavModal}
         setShow={setShowNavModal}
       />
-
+      {showCartModal && <CartModal />}
     </>
   );
 }
