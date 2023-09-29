@@ -1,13 +1,16 @@
 "use client";
 
 
+import CommonSaleCart from "@/Component/CommonSeleCart";
 import { GlobalContext } from "@/contaxt";
 import { getAllUserProducts } from "@/services/product";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-
+import image2 from '../../public/demo-shoes-banner-img-04.webp'
+import image1 from '../../public/demo-shoes-img-04.webp'
+import image3 from '../../public/demo-shoes-img-03.webp'
 export default function Home() {
   const { isAuthUser } = useContext(GlobalContext);
 
@@ -18,7 +21,8 @@ export default function Home() {
     const res = await getAllUserProducts();
     console.log(res);
     if (res.success) {
-      setProducts(res.data);
+      const projectData = res?.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setProducts(projectData);
     }
   }
 
@@ -171,7 +175,11 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      
+
+
+
+      <CommonSaleCart image1={image1} image2={image2} image3={image3}></CommonSaleCart>
+
     </main>
   );
 }
