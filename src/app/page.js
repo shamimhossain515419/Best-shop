@@ -44,7 +44,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => router.push("/product/listing/all-products")}
-              className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+              className="mt-1.5 inline-block bg-[#27895C] px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
             >
               Explore Shop Collection
             </button>
@@ -67,7 +67,7 @@ export default function Home() {
                 </div>
                 <button
                   onClick={() => router.push("/product/listing/all-products")}
-                  className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+                  className="mt-1.5 inline-block bg-[#27895C] px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                 >
                   Shop ALL
                 </button>
@@ -127,7 +127,7 @@ export default function Home() {
                   <h3 className="text-xl font-medium text-white">KIDS</h3>
                   <button
                     onClick={() => router.push("/product/listing/kids")}
-                    className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+                    className="mt-1.5 inline-block bg-[#27895C] px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                   >
                     Shop Now
                   </button>
@@ -144,7 +144,7 @@ export default function Home() {
                   <h3 className="text-xl font-medium text-white">WOMEN</h3>
                   <button
                     onClick={() => router.push("/product/listing/women")}
-                    className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+                    className="mt-1.5 inline-block bg-[#27895C] px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                   >
                     Shop Now
                   </button>
@@ -161,7 +161,7 @@ export default function Home() {
                   <h3 className="text-xl font-medium text-white">MEN</h3>
                   <button
                     onClick={() => router.push("/product/listing/men")}
-                    className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
+                    className="mt-1.5 inline-block bg-[#27895C] px-5 py-3 text-xs font-medium uppercase tracking-wide text-white"
                   >
                     Shop Now
                   </button>
@@ -171,6 +171,7 @@ export default function Home() {
           </ul>
         </div>
       </section>
+      
     </main>
   );
 }

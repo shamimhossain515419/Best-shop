@@ -132,7 +132,7 @@ const AccountPage = () => {
                                         <p>{user?.email}</p>
                                         <p>{user?.role}</p>
                                    </div>
-                                   <button onClick={() => router.push('/orders')} className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+                                   <button onClick={() => router.push('/orders')} className="mt-5  inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                                         View Your Orders
                                    </button>
                                    <div className="mt-6">
@@ -156,13 +156,13 @@ const AccountPage = () => {
                                                                  <p>PostalCode : {item.postalCode}</p>
                                                                  <button
                                                                       onClick={() => handleUpdateAddress(item)}
-                                                                      className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                                                      className="mt-5 mr-5 inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                                                                  >
                                                                       Update
                                                                  </button>
                                                                  <button
                                                                       onClick={() => handleDelete(item._id)}
-                                                                      className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                                                      className="mt-5  inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                                                                  >
                                                                       {componentLevelLoader &&
                                                                            componentLevelLoader.loading &&
@@ -190,7 +190,7 @@ const AccountPage = () => {
                                    <div className="mt-4">
                                         <button
                                              onClick={() => setShowAddressForm(!showAddressForm)}
-                                             className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                             className="mt-5  inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                                         >
                                              {showAddressForm ? "Hide Address Form" : "Add New Address"}
                                         </button>
@@ -216,7 +216,7 @@ const AccountPage = () => {
                                              </div>
                                              <button
                                                   onClick={handleAddOrUpdateAddress}
-                                                  className="mt-5  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                                  className="mt-5  inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                                              >
                                                   {componentLevelLoader && componentLevelLoader.loading ? (
                                                        <ComponentLevelLoader

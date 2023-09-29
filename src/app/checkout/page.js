@@ -1,15 +1,19 @@
-'use client'
-import { GlobalContext } from '@/contaxt';
-import { fetchAllAddresses } from '@/services/address';
-import Image from 'next/image';
-import React, { useContext, useEffect, useState } from 'react';
+"use client";
+
+
+import Notification from "@/Component/Notification";
+import { GlobalContext } from "@/contaxt";
+import { fetchAllAddresses } from "@/services/address";
+import { createNewOrder } from "@/services/order";
+import { callStripeSession } from "@/services/stripe";
 import { loadStripe } from "@stripe/stripe-js";
-import { callStripeSession } from '@/services/stripe';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { PulseLoader } from 'react-spinners';
-import { createNewOrder } from '@/services/order';
-import { toast } from 'react-toastify';
-const CheckoutPage = () => {
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
+import { PulseLoader } from "react-spinners";
+import { toast } from "react-toastify";
+
+export default function Checkout() {
      const {
           cartItems,
           user,
@@ -18,18 +22,36 @@ const CheckoutPage = () => {
           checkoutFormData,
           setCheckoutFormData,
      } = useContext(GlobalContext);
-     const router = useRouter();
+
+     const [selectedAddress, setSelectedAddress] = useState(null);
      const [isOrderProcessing, setIsOrderProcessing] = useState(false);
      const [orderSuccess, setOrderSuccess] = useState(false);
+
+     const router = useRouter();
      const params = useSearchParams();
+
      const publishableKey =
           "pk_test_51NEGeNGO16nc6gMPydwjPCMfVK7VSAJj5bqVJ1QDwytY7jarGEYbT6tQBZyTqgpY1c7o0UPYCHqUBEanvs1rZyoa00F2Fw14aY";
      const stripePromise = loadStripe(publishableKey);
+
+     console.log(cartItems);
+
+     async function getAllAddresses() {
+          const res = await fetchAllAddresses(user?._id);
+
+          if (res.success) {
+               setAddresses(res.data);
+          }
+     }
+
+     useEffect(() => {
+          if (user !== null) getAllAddresses();
+     }, [user]);
+
      useEffect(() => {
           async function createFinalOrder() {
                const isStripe = JSON.parse(localStorage.getItem("stripe"));
-               console.log(params.get("status"));
-               console.log("params.get status");
+
                if (
                     isStripe &&
                     params.get("status") === "success" &&
@@ -59,8 +81,7 @@ const CheckoutPage = () => {
                     };
 
                     const res = await createNewOrder(createFinalCheckoutFormData);
-                    console.log(createFinalCheckoutFormData);
-                    console.log(res);
+
                     if (res.success) {
                          setIsOrderProcessing(false);
                          setOrderSuccess(true);
@@ -79,21 +100,6 @@ const CheckoutPage = () => {
 
           createFinalOrder();
      }, [params.get("status"), cartItems]);
-
-
-
-     const [selectedAddress, setSelectedAddress] = useState(null);
-     async function getAllAddresses() {
-          const res = await fetchAllAddresses(user?._id);
-
-          if (res.success) {
-               setAddresses(res.data);
-          }
-     }
-
-     useEffect(() => {
-          if (user !== null) getAllAddresses();
-     }, [user]);
 
      function handleSelectedAddress(getAddress) {
           if (getAddress._id === selectedAddress) {
@@ -120,11 +126,8 @@ const CheckoutPage = () => {
           });
      }
 
-     console.log(checkoutFormData);
-
-     const handleCheckout = async () => {
+     async function handleCheckout() {
           const stripe = await stripePromise;
-
 
           const createLineItems = cartItems.map((item) => ({
                price_data: {
@@ -137,20 +140,20 @@ const CheckoutPage = () => {
                },
                quantity: 1,
           }));
+
           const res = await callStripeSession(createLineItems);
-
-
           setIsOrderProcessing(true);
           localStorage.setItem("stripe", true);
           localStorage.setItem("checkoutFormData", JSON.stringify(checkoutFormData));
+
           const { error } = await stripe.redirectToCheckout({
                sessionId: res.id,
           });
 
-          console.log(error);
-
-
+          
      }
+
+   
 
      useEffect(() => {
           if (orderSuccess) {
@@ -160,8 +163,6 @@ const CheckoutPage = () => {
                }, [2000]);
           }
      }, [orderSuccess]);
-
-
 
      if (orderSuccess) {
           return (
@@ -197,7 +198,6 @@ const CheckoutPage = () => {
 
      return (
           <div>
-         
                <div className="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32">
                     <div className="px-4 pt-8">
                          <p className="font-medium text-xl">Cart Summary</p>
@@ -208,8 +208,7 @@ const CheckoutPage = () => {
                                              className="flex flex-col rounded-lg bg-white sm:flex-row"
                                              key={item._id}
                                         >
-                                             <Image width={200}
-                                                  height={200}
+                                             <Image width={250} height={250}
                                                   src={item && item.productID && item.productID.imageUrl}
                                                   alt="Cart Item"
                                                   className="m-2 h-24 w-28 rounded-md border object-cover object-center"
@@ -248,7 +247,7 @@ const CheckoutPage = () => {
                                              <p>City : {item.city}</p>
                                              <p>Country : {item.country}</p>
                                              <p>PostalCode : {item.postalCode}</p>
-                                             <button className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
+                                             <button className="mt-5 mr-5 inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide">
                                                   {item._id === selectedAddress
                                                        ? "Selected Address"
                                                        : "Select Address"}
@@ -261,7 +260,7 @@ const CheckoutPage = () => {
                          </div>
                          <button
                               onClick={() => router.push("/account")}
-                              className="mt-5 mr-5 inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                              className="mt-5 mr-5 inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                          >
                               Add new address
                          </button>
@@ -301,7 +300,7 @@ const CheckoutPage = () => {
                                              Object.keys(checkoutFormData.shippingAddress).length === 0
                                         }
                                         onClick={handleCheckout}
-                                        className="disabled:opacity-50 mt-5 mr-5 w-full  inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                        className="disabled:opacity-50 mt-5 mr-5 w-full  inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                                    >
                                         Checkout
                                    </button>
@@ -309,8 +308,7 @@ const CheckoutPage = () => {
                          </div>
                     </div>
                </div>
+               <Notification />
           </div>
      );
-};
-
-export default CheckoutPage;
+}

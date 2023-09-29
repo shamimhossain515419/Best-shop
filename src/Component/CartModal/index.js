@@ -19,7 +19,7 @@ const CartModal = () => {
 
      async function extractAllCartItems() {
           const res = await getAllCartItems(user?._id);
-          console.log(res);
+      
           if (res.success) {
 
                const updatedData = res.data && res.data.length
@@ -148,7 +148,7 @@ const CartModal = () => {
                                         router.push("/cart");
                                         setShowCartModal(false);
                                    }}
-                                   className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
+                                   className="mt-1.5 w-full inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide"
                               >
                                    Go To Cart
                               </button>
@@ -159,7 +159,7 @@ const CartModal = () => {
                                         router.push("/checkout");
                                         setShowCartModal(false);
                                    }}
-                                   className="mt-1.5 w-full inline-block bg-black text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
+                                   className="mt-1.5 w-full inline-block bg-[#27895C] text-white px-5 py-3 text-xs font-medium uppercase tracking-wide disabled:opacity-50"
                               >
                                    Checkout
                               </button>

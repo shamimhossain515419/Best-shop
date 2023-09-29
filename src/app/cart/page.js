@@ -23,9 +23,9 @@ export default function Cart() {
 
      async function extractAllCartItems() {
           setPageLevelLoader(true);
-          console.log(user?._id);
+          
           const res = await getAllCartItems("650c777a29fb81fcf6804ef7");
-          console.log(res);
+       
           if (res.success) {
                const updatedData =
                     res.data && res.data.length
@@ -50,7 +50,7 @@ export default function Cart() {
                localStorage.setItem("cartItems", JSON.stringify(updatedData));
           }
 
-          console.log(res);
+         
      }
 
      useEffect(() => {

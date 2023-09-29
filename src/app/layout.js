@@ -3,6 +3,7 @@ import Navbar from '@/Component/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import GlobalState from '@/contaxt'
+import Footer from '@/Component/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -18,7 +19,13 @@ export default function RootLayout({ children }) {
           <Navbar></Navbar>
           <div className='flex text-black  min-h-screen flex-col mt-[80px]'>
             {children}
+
+
+             <div>
+             <Footer></Footer>
+             </div>
           </div>
+
         </GlobalState>
 
       </body>

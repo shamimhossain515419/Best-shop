@@ -4,7 +4,7 @@ import React from 'react';
 
 const AllProductPage = async () => {
      const allAdminProducts = await getAllAdminProducts()
-     console.log(allAdminProducts);
+     
      return (
           <div>
                <CommonListing data={allAdminProducts && allAdminProducts.data} />

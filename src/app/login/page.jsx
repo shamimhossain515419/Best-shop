@@ -17,7 +17,7 @@ const initialFormdata = {
 const LoginPage = () => {
      const [formData, setFormData] = useState(initialFormdata);
 
-     console.log(formData);;
+
      const { isAuthUser,
           setIsAuthUser, componentLevelLoader,
           setComponentLevelLoader, user, setUser } = useContext(GlobalContext)
@@ -98,7 +98,7 @@ const LoginPage = () => {
                                              ) : null
                                         )}
                                         <button
-                                             className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                                             className="disabled:opacity-50 inline-flex w-full items-center justify-center bg-[#27895C] px-6 py-4 text-lg 
                          text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
                          "
                                              disabled={!isFormValid()}
@@ -119,7 +119,7 @@ const LoginPage = () => {
                                         <div className="flex flex-col gap-2">
                                              <p>New to website ?</p>
                                              <button
-                                                  className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                                                  className="inline-flex w-full items-center justify-center bg-[#27895C] px-6 py-4 text-lg 
                          text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
                          "
                                                   onClick={() => router.push("/register")}

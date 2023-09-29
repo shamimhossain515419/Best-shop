@@ -16,7 +16,7 @@ export default function ProductTile({ item }) {
         />
       </div>
       {item.onSale === "yes" ? (
-        <div className="absolute top-0 m-2 rounded-full bg-black">
+        <div className="absolute top-0 m-2 rounded-full bg-[#27895C]">
           <p className="rounded-full  p-1 text-[8px] font-bold uppercase tracking-wide text-white sm:py-1 sm:px-3">
             Sale
           </p>

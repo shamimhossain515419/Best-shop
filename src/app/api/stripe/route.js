@@ -18,8 +18,8 @@ export async function POST(req) {
                     payment_method_types: ["card"],
                     line_items: res,
                     mode: "payment",
-                    success_url: "https://best-shop-1x5b80043-shamimusman515419.vercel.app/checkout" + "?status=success",
-                    cancel_url: " https://best-shop-1x5b80043-shamimusman515419.vercel.app/checkout" + "?status=cancel",
+                    success_url: "https://best-shop-sigma.vercel.app/checkout" + "?status=success",
+                    cancel_url: "https://best-shop-sigma.vercel.app/checkout" + "?status=cancel",
                });
 
                return NextResponse.json({

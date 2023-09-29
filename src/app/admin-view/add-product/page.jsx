@@ -181,7 +181,7 @@ const AddNewProduct = () => {
                               )}
                               <button
                                    onClick={handleAddProduct}
-                                   className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
+                                   className="inline-flex w-full items-center justify-center bg-[#27895C] px-6 py-4 text-lg text-white font-medium uppercase tracking-wide"
                               >
                                    {componentLevelLoader && componentLevelLoader.loading ? (
                                         <ComponentLevelLoader

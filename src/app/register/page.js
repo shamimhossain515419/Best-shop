@@ -38,7 +38,7 @@ const RegisterPage = () => {
      const handleRegisterOnSubmit = async () => {
           setPageLevelLoader(true)
           const data = await registerNewUser(formData);
-          console.log(data);
+      
           if (data.success) {
                toast.success(data.message, {
                     position: toast.POSITION.TOP_RIGHT,
@@ -67,7 +67,7 @@ const RegisterPage = () => {
                                    </p>
                                    {isRegistered ? (
                                         <button
-                                             className="inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                                             className="inline-flex w-full items-center justify-center bg-[#27895C] px-6 py-4 text-lg 
                     text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
                     "  onClick={() => router.push('/login')}   >  Login   </button>
                                    ) : (
@@ -102,7 +102,7 @@ const RegisterPage = () => {
                                                   ) : null
                                              )}
                                              <button
-                                                  className=" disabled:opacity-50 inline-flex w-full items-center justify-center bg-black px-6 py-4 text-lg 
+                                                  className=" disabled:opacity-50 inline-flex w-full items-center justify-center bg-[#27895C] px-6 py-4 text-lg 
                        text-white transition-all duration-200 ease-in-out focus:shadow font-medium uppercase tracking-wide
                        "
                                                   disabled={!isFormValid()}
